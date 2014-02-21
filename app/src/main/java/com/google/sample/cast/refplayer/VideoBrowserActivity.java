@@ -16,6 +16,7 @@
 
 package com.google.sample.cast.refplayer;
 
+import com.google.sample.cast.refplayer.browser.VideoBrowserListFragment;
 import com.google.sample.cast.refplayer.settings.CastPreference;
 import com.google.sample.castcompanionlibrary.cast.VideoCastManager;
 import com.google.sample.castcompanionlibrary.cast.callbacks.IVideoCastConsumer;
@@ -42,6 +43,7 @@ public class VideoBrowserActivity extends ActionBarActivity {
     private IVideoCastConsumer mCastConsumer;
     private MiniController mMini;
     private MenuItem mediaRouteMenuItem;
+    private VideoBrowserListFragment videoBrowserListFragment;
 
     SharedPreferences sharedPreferences;
     int requestCode;
@@ -56,10 +58,14 @@ public class VideoBrowserActivity extends ActionBarActivity {
         VideoCastManager.checkGooglePlaySevices(this);
         setContentView(R.layout.video_browser);
 
+        videoBrowserListFragment = (VideoBrowserListFragment) getSupportFragmentManager().findFragmentById(R.id.browse);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("loggedIn", false)) {
             Intent setupIntent = new Intent(this, Setup.class);
             startActivityForResult(setupIntent, requestCode);
+        } else {
+            loadPutioData();
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -118,6 +124,20 @@ public class VideoBrowserActivity extends ActionBarActivity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         getSupportActionBar().setIcon(R.drawable.actionbar_logo_castvideos);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            loadPutioData();
+        } else {
+            finish();
+        }
+    }
+
+    private void loadPutioData() {
+        videoBrowserListFragment.beginRefreshForToken(sharedPreferences.getString("token", "token"));
     }
 
     @Override

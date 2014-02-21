@@ -18,6 +18,7 @@ package com.google.sample.cast.refplayer.browser;
 
 import com.google.android.gms.cast.MediaInfo;
 import com.google.sample.cast.refplayer.R;
+import com.google.sample.cast.refplayer.Setup;
 import com.google.sample.cast.refplayer.mediaplayer.LocalPlayerActivity;
 import com.google.sample.castcompanionlibrary.utils.Utils;
 
@@ -56,7 +57,10 @@ public class VideoBrowserListFragment extends ListFragment implements
         setEmptyText(getString(R.string.no_video_found));
         setListAdapter(mAdapter);
         setListShown(false);
-        getLoaderManager().initLoader(0, null, this);
+        /*This is called from VideoBrowserActivity when Setup closes,
+        * or when the a token already exists and the app is starting
+        * //getLoaderManager().initLoader(0, null, this);
+        */
     }
 
     /*
@@ -118,5 +122,14 @@ public class VideoBrowserListFragment extends ListFragment implements
         VideoBrowserListFragment f = new VideoBrowserListFragment();
         f.setArguments(b);
         return f;
+    }
+
+    public void beginRefreshForToken(String token) {
+        mToken = token;
+        getLoaderManager().restartLoader(0, null, this);
+    }
+
+    public void beginRefresh() {
+        getLoaderManager().restartLoader(0, null, this);
     }
 }
