@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="menu_addtransfers">Add Transfers</string>
+    <string name="pasteurls">Paste URLs here</string>
+    <string name="extractwhenfinished">Extract when finished</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="addtransferstitle">Add transfers</string>
+    <string name="nothingenteredtofetch">Enter something to fetch first!</string>
+
     <string name="couldntconnect">Could not connect</string>
     <string name="loginsuccess">Successful Login</string>
     <string name="action_logout">Log Out</string>

@@ -36,6 +36,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".AddTransfers">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="magnet" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.google.sample.cast.refplayer.mediaplayer.LocalPlayerActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:label="@string/app_name"

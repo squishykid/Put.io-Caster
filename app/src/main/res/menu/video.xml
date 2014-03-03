@@ -8,21 +8,8 @@
         app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/menu_addtransfers"
-        android:icon="@drawable/ic_action_add"
-        android:title="@string/menu_addtransfers"
-        app:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_refresh"
-        android:title="Refresh"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_logout"
-        android:title="@string/action_logout"
         app:showAsAction="never"/>
 
 </menu>

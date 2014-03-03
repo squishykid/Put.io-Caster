@@ -148,6 +148,25 @@ public class VideoBrowserActivity extends ActionBarActivity {
         mediaRouteMenuItem = mCastManager.
                 addMediaRouterButton(menu, R.id.media_route_menu_item);
 
+        MenuItem buttonAdd = menu.findItem(R.id.menu_addtransfers);
+        buttonAdd.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent addTransferActivityIntent = new Intent(VideoBrowserActivity.this, AddTransfers.class);
+                startActivity(addTransferActivityIntent);
+                return false;
+            }
+        });
+
+        MenuItem buttonRefresh = menu.findItem(R.id.action_refresh);
+        buttonRefresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+            public boolean onMenuItemClick(MenuItem item) {
+                videoBrowserListFragment.beginRefresh();
+                return false;
+            }
+        });
+
         return true;
     }
 
